@@ -6,7 +6,8 @@
     <groupId>com.microsoft.azure.samples</groupId>
     <artifactId>hello-springboot</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    
+    <packaging>war</packaging>
 
     <name>hello-springboot</name>
     <description>Demo project for Spring Boot</description>
@@ -41,6 +42,24 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+             <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-install-plugin</artifactId>
+        <version>2.5.2</version>
+        <executions>
+            <execution>
+                <phase>package</phase>
+                <configuration>
+                    <packaging>war</packaging>
+                    <file>${project.build.directory}\${artifactId}-${version}.war</file>
+                </configuration>
+                <goals>
+                    <goal>install-file</goal>
+                </goals>
+            </execution>
+        </executions>
+    </plugin>
+
         </plugins>
     </build>
 
